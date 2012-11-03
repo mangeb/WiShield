@@ -35,7 +35,7 @@
  *****************************************************************************/
 
 
-#include "WProgram.h"
+#include "Arduino.h"
 #include "WiServer.h"
 
 extern "C" {
@@ -161,10 +161,11 @@ void Server::enableVerboseMode(boolean enable) {
 /******* Generic printing and sending functions ********/
 
 
-void Server::write_P(const char data[], int len) {
+size_t Server::write_P(const char data[], int len) {
 	while (len-- > 0) {
 		this->write(pgm_read_byte(data++));
 	}
+	//TODO: Should return size of written data
 }
 
 
